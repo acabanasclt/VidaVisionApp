@@ -1,28 +1,28 @@
 import React from 'react';
 import { TouchableOpacity, Text, View, TouchableOpacityProps } from 'react-native';
-import { colors } from '../../utils/colors';
 
 interface SocialButtonProps extends TouchableOpacityProps {
   title: string;
   icon: React.ReactNode;
-  dark?: boolean;
 }
 
-export const SocialButton = ({ title, icon, dark = false, ...props }: SocialButtonProps) => (
+export const SocialButton = ({ title, icon, ...props }: SocialButtonProps) => (
   <TouchableOpacity
     activeOpacity={0.8}
-    className="h-14 rounded-2xl flex-row items-center justify-center"
     style={{
-      backgroundColor: dark ? '#1A1A1A' : colors.white,
-      borderWidth: dark ? 0 : 1,
-      borderColor: colors.border,
+      flex: 1,
+      flexDirection: 'row',
+      alignItems: 'center',
+      justifyContent: 'center',
+      backgroundColor: '#ffffff',
+      borderRadius: 20,
+      borderWidth: 1,
+      borderColor: '#bfc9be',
+      height: 52,
+      gap: 8,
     }}
     {...props}>
-    <View className="mr-3">{icon}</View>
-    <Text
-      className="text-base font-medium"
-      style={{ color: dark ? colors.white : colors.text.primary }}>
-      {title}
-    </Text>
+    {icon}
+    <Text style={{ fontSize: 16, fontWeight: '300', color: '#005129' }}>{title}</Text>
   </TouchableOpacity>
 );

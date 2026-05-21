@@ -7,13 +7,13 @@ interface DividerProps {
 }
 
 export const Divider = ({ label }: DividerProps) => (
-  <View className="flex-row items-center my-6">
-    <View className="flex-1 h-px" style={{ backgroundColor: colors.border }} />
+  <View style={{ flexDirection: 'row', alignItems: 'center', marginVertical: 32 }}>
+    <View style={{ flex: 1, height: 1, backgroundColor: colors.outlineVariant }} />
     {label && (
-      <Text className="mx-4 text-sm" style={{ color: colors.text.light }}>
+      <Text style={{ marginHorizontal: 16, fontSize: 12, fontWeight: '600', letterSpacing: 1.2, color: colors.outline }}>
         {label}
       </Text>
     )}
-    <View className="flex-1 h-px" style={{ backgroundColor: colors.border }} />
+    <View style={{ flex: 1, height: 1, backgroundColor: colors.outlineVariant }} />
   </View>
 );

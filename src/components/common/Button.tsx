@@ -1,68 +1,40 @@
 import React from 'react';
-import { TouchableOpacity, Text, ActivityIndicator, View, TouchableOpacityProps } from 'react-native';
-import { colors } from '../../utils/colors';
+import { TouchableOpacity, Text, ActivityIndicator, ViewStyle, TouchableOpacityProps } from 'react-native';
 
 interface ButtonProps extends TouchableOpacityProps {
   title: string;
-  variant?: 'primary' | 'secondary' | 'outline' | 'ghost';
+  variant?: 'primary' | 'secondary' | 'outline';
   loading?: boolean;
-  leftIcon?: React.ReactNode;
+  style?: ViewStyle;
 }
 
-export const Button = ({
-  title,
-  variant = 'primary',
-  loading = false,
-  leftIcon,
-  disabled,
-  ...props
-}: ButtonProps) => {
+export const Button = ({ title, variant = 'primary', loading = false, disabled, style, ...props }: ButtonProps) => {
   const styles = {
-    primary: {
-      bg: disabled ? '#A7C4B0' : colors.primary,
-      text: colors.white,
-      border: 'transparent',
-    },
-    secondary: {
-      bg: colors.primaryLight,
-      text: colors.primary,
-      border: 'transparent',
-    },
-    outline: {
-      bg: 'transparent',
-      text: colors.primary,
-      border: colors.primary,
-    },
-    ghost: {
-      bg: 'transparent',
-      text: colors.text.secondary,
-      border: 'transparent',
-    },
+    primary: { bg: disabled ? '#a5c4b0' : '#005129', text: '#ffffff' },
+    secondary: { bg: '#f1f5ee', text: '#005129' },
+    outline: { bg: 'transparent', text: '#005129' },
   };
 
   const s = styles[variant];
 
   return (
     <TouchableOpacity
+      activeOpacity={0.85}
       disabled={disabled || loading}
-      activeOpacity={0.8}
-      style={{
+      style={[{
         backgroundColor: s.bg,
+        borderRadius: 20,
         borderWidth: variant === 'outline' ? 1 : 0,
-        borderColor: s.border,
-      }}
-      className="h-14 rounded-2xl items-center justify-center flex-row"
+        borderColor: '#005129',
+        height: 56,
+        alignItems: 'center',
+        justifyContent: 'center',
+      }, style]}
       {...props}>
-      {loading ? (
-        <ActivityIndicator color={s.text} />
-      ) : (
-        <View className="flex-row items-center gap-2">
-          {leftIcon}
-          <Text className="text-base font-semibold" style={{ color: s.text }}>
-            {title}
-          </Text>
-        </View>
-      )}
+      {loading
+        ? <ActivityIndicator color={s.text} />
+        : <Text style={{ fontSize: 18, fontWeight: '300', color: s.text }}>{title}</Text>
+      }
     </TouchableOpacity>
   );
 };
