@@ -38,26 +38,31 @@ export const LoginScreen = () => {
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
       <ScrollView
         style={{ flex: 1 }}
-        contentContainerStyle={{ paddingHorizontal: 20, paddingTop: 48, paddingBottom: 40 }}
+        contentContainerStyle={{
+          flexGrow: 1,
+          paddingHorizontal: 24,
+          paddingTop: 48,
+          paddingBottom: 40,
+          justifyContent: 'center',
+        }}
         keyboardShouldPersistTaps="handled">
 
-        <View style={{ alignItems: 'center', marginBottom: 32 }}>
-          <Leaf size={44} color={colors.primary} />
-          <Text style={{ fontSize: 24, fontWeight: '700', color: colors.primary, letterSpacing: -0.3, marginTop: 8 }}>
+        <View style={{ alignItems: 'center', marginBottom: 28 }}>
+          <Leaf size={36} color={colors.primary} />
+          <Text style={{ fontSize: 20, fontWeight: '700', color: colors.primary, letterSpacing: -0.3, marginTop: 6 }}>
             VidaVision
           </Text>
         </View>
 
-        <View style={{ marginBottom: 32 }}>
-          <Text style={{ fontSize: 48, fontWeight: '700', color: colors.primary, letterSpacing: -1, lineHeight: 52, marginBottom: 8 }}>
+        <View style={{ marginBottom: 28 }}>
+          <Text style={{ fontSize: 36, fontWeight: '700', color: colors.primary, letterSpacing: -0.8, lineHeight: 40, marginBottom: 6 }}>
             Iniciar Sesión
           </Text>
-          <Text style={{ fontSize: 18, fontWeight: '300', color: colors.onSurfaceVariant, lineHeight: 28 }}>
+          <Text style={{ fontSize: 15, fontWeight: '300', color: colors.onSurfaceVariant, lineHeight: 22 }}>
             Inteligencia agrícola de precisión
           </Text>
         </View>
 
-        {/* Email */}
         <Input
           label="Correo Electrónico"
           placeholder="tu@email.com"
@@ -66,7 +71,7 @@ export const LoginScreen = () => {
           value={form.email}
           onChangeText={v => setField('email', v)}
           error={errors.email}
-          leftIcon={<Mail size={18} color={colors.outline} />}
+          leftIcon={<Mail size={16} color={colors.outline} />}
         />
 
         <Input
@@ -76,14 +81,14 @@ export const LoginScreen = () => {
           value={form.password}
           onChangeText={v => setField('password', v)}
           error={errors.password}
-          leftIcon={<Lock size={18} color={colors.outline} />}
+          leftIcon={<Lock size={16} color={colors.outline} />}
           rightIcon={showPassword
-            ? <EyeOff size={18} color={colors.outline} />
-            : <Eye size={18} color={colors.outline} />}
+            ? <EyeOff size={16} color={colors.outline} />
+            : <Eye size={16} color={colors.outline} />}
           onRightIconPress={toggleShowPassword}
           rightLabel={
             <TouchableOpacity onPress={handleForgotPassword}>
-              <Text style={{ fontSize: 12, fontWeight: '600', color: colors.primary, letterSpacing: 1 }}>
+              <Text style={{ fontSize: 11, fontWeight: '600', color: colors.primary, letterSpacing: 0.8 }}>
                 Olvidé mi contraseña
               </Text>
             </TouchableOpacity>
@@ -99,17 +104,17 @@ export const LoginScreen = () => {
 
         <Divider label="O CONTINUAR CON" />
 
-        <View style={{ flexDirection: 'row', gap: 12 }}>
-        <SocialButton title="Google" icon={<GoogleIcon width={20} height={20} />} onPress={handleGoogleLogin} />
-<SocialButton title="Apple" icon={<AppleIcon width={20} height={20} />} onPress={handleAppleLogin} />
+        <View style={{ flexDirection: 'row', gap: 10 }}>
+          <SocialButton title="Google" icon={<GoogleIcon width={18} height={18} />} onPress={handleGoogleLogin} />
+          <SocialButton title="Apple" icon={<AppleIcon width={18} height={18} />} onPress={handleAppleLogin} />
         </View>
 
-        <View style={{ flexDirection: 'row', justifyContent: 'center', marginTop: 40 }}>
-          <Text style={{ fontSize: 16, fontWeight: '300', color: colors.onSurfaceVariant }}>
+        <View style={{ flexDirection: 'row', justifyContent: 'center', marginTop: 32 }}>
+          <Text style={{ fontSize: 14, fontWeight: '300', color: colors.onSurfaceVariant }}>
             ¿No tienes una cuenta?{' '}
           </Text>
           <TouchableOpacity onPress={handleRegister}>
-            <Text style={{ fontSize: 16, fontWeight: '700', color: colors.primary }}>
+            <Text style={{ fontSize: 14, fontWeight: '700', color: colors.primary }}>
               Regístrate
             </Text>
           </TouchableOpacity>

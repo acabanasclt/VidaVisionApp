@@ -1,7 +1,7 @@
 import './global.css';
 import React from 'react';
-import { LoginScreen } from './src/screens/Auth/LoginScreen';
+import { OnboardingScreen } from './src/screens/Onboarding/OnboardingScreen';
 
 export default function App() {
-  return <LoginScreen />;
+  return <OnboardingScreen />;
 }

@@ -1,5 +1,6 @@
 import React from 'react';
 import { TouchableOpacity, Text, ActivityIndicator, ViewStyle, TouchableOpacityProps } from 'react-native';
+import { colors } from '../../utils/colors';
 
 interface ButtonProps extends TouchableOpacityProps {
   title: string;
@@ -10,9 +11,9 @@ interface ButtonProps extends TouchableOpacityProps {
 
 export const Button = ({ title, variant = 'primary', loading = false, disabled, style, ...props }: ButtonProps) => {
   const styles = {
-    primary: { bg: disabled ? '#a5c4b0' : '#005129', text: '#ffffff' },
-    secondary: { bg: '#f1f5ee', text: '#005129' },
-    outline: { bg: 'transparent', text: '#005129' },
+    primary: { bg: disabled ? '#a5c4b0' : colors.primary, text: colors.onPrimary },
+    secondary: { bg: colors.surfaceContainerLow, text: colors.primary },
+    outline: { bg: 'transparent', text: colors.primary },
   };
 
   const s = styles[variant];
@@ -23,17 +24,17 @@ export const Button = ({ title, variant = 'primary', loading = false, disabled, 
       disabled={disabled || loading}
       style={[{
         backgroundColor: s.bg,
-        borderRadius: 20,
+        borderRadius: 16,
         borderWidth: variant === 'outline' ? 1 : 0,
-        borderColor: '#005129',
-        height: 56,
+        borderColor: colors.primary,
+        height: 50,
         alignItems: 'center',
         justifyContent: 'center',
       }, style]}
       {...props}>
       {loading
         ? <ActivityIndicator color={s.text} />
-        : <Text style={{ fontSize: 18, fontWeight: '300', color: s.text }}>{title}</Text>
+        : <Text style={{ fontSize: 16, fontWeight: '400', color: s.text }}>{title}</Text>
       }
     </TouchableOpacity>
   );

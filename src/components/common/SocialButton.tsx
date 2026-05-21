@@ -1,5 +1,6 @@
 import React from 'react';
-import { TouchableOpacity, Text, View, TouchableOpacityProps } from 'react-native';
+import { TouchableOpacity, Text, TouchableOpacityProps } from 'react-native';
+import { colors } from '../../utils/colors';
 
 interface SocialButtonProps extends TouchableOpacityProps {
   title: string;
@@ -14,15 +15,15 @@ export const SocialButton = ({ title, icon, ...props }: SocialButtonProps) => (
       flexDirection: 'row',
       alignItems: 'center',
       justifyContent: 'center',
-      backgroundColor: '#ffffff',
-      borderRadius: 20,
+      backgroundColor: colors.surfaceContainerLowest,
+      borderRadius: 16,
       borderWidth: 1,
-      borderColor: '#bfc9be',
-      height: 52,
+      borderColor: colors.outlineVariant,
+      height: 46,
       gap: 8,
     }}
     {...props}>
     {icon}
-    <Text style={{ fontSize: 16, fontWeight: '300', color: '#005129' }}>{title}</Text>
+    <Text style={{ fontSize: 14, fontWeight: '400', color: colors.primary }}>{title}</Text>
   </TouchableOpacity>
 );

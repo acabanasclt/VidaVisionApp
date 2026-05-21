@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, TextInputProps } from 'react-native';
+import { colors } from '../../utils/colors';
 
 interface InputProps extends TextInputProps {
   label: string;
@@ -22,9 +23,9 @@ export const Input = ({
   const [focused, setFocused] = useState(false);
 
   return (
-    <View style={{ marginBottom: 24 }}>
-      <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
-        <Text style={{ fontSize: 12, fontWeight: '600', letterSpacing: 1.2, color: '#404940', textTransform: 'uppercase' }}>
+    <View style={{ marginBottom: 16 }}>
+      <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 6 }}>
+        <Text style={{ fontSize: 11, fontWeight: '600', letterSpacing: 1.2, color: colors.onSurfaceVariant, textTransform: 'uppercase' }}>
           {label}
         </Text>
         {rightLabel}
@@ -32,17 +33,17 @@ export const Input = ({
       <View style={{
         flexDirection: 'row',
         alignItems: 'center',
-        backgroundColor: '#f1f5ee',
-        borderRadius: 20,
+        backgroundColor: colors.surfaceContainerLow,
+        borderRadius: 16,
         borderWidth: 1,
-        borderColor: error ? '#ba1a1a' : focused ? '#005129' : '#bfc9be',
-        paddingHorizontal: 16,
-        height: 56,
+        borderColor: error ? colors.error : focused ? colors.primary : colors.outlineVariant,
+        paddingHorizontal: 14,
+        height: 48,
       }}>
-        {leftIcon && <View style={{ marginRight: 12 }}>{leftIcon}</View>}
+        {leftIcon && <View style={{ marginRight: 10 }}>{leftIcon}</View>}
         <TextInput
-          style={{ flex: 1, fontSize: 16, color: '#181d19', fontWeight: '300' }}
-          placeholderTextColor="#9ca3af"
+          style={{ flex: 1, fontSize: 15, color: colors.onSurface, fontWeight: '300' }}
+          placeholderTextColor={colors.outline}
           onFocus={() => setFocused(true)}
           onBlur={() => setFocused(false)}
           {...props}
@@ -54,7 +55,7 @@ export const Input = ({
         )}
       </View>
       {error && (
-        <Text style={{ fontSize: 12, color: '#ba1a1a', marginTop: 4 }}>{error}</Text>
+        <Text style={{ fontSize: 11, color: colors.error, marginTop: 3 }}>{error}</Text>
       )}
     </View>
   );
