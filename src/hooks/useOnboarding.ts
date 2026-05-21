@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { RootStackParamList } from '../navigation/types';
 
