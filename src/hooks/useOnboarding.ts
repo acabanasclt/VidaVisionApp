@@ -1,4 +1,8 @@
 import { useState } from 'react';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { StackNavigationProp } from '@react-navigation/stack';
+import { RootStackParamList } from '../navigation/types';
 
 interface Slide {
   id: string;
@@ -32,21 +36,28 @@ const SLIDES: Slide[] = [
   },
 ];
 
-export const useOnboarding = () => {
+type NavigationProp = StackNavigationProp<RootStackParamList>;
+
+export const useOnboarding = (navigation: NavigationProp) => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const isLast = currentIndex === SLIDES.length - 1;
 
-  const handleNext = () => {
-    if (!isLast) {
-      setCurrentIndex(prev => prev + 1);
+  const goToLogin = async () => {
+    await AsyncStorage.setItem('onboarding_completed', 'true');
+    navigation.replace('Login');
+  };
+
+  const handleNext = async () => {
+    if (isLast) {
+      await goToLogin();
     } else {
-      // TODO: navegar a Home
+      setCurrentIndex(prev => prev + 1);
     }
   };
 
-  const handleSkip = () => {
-    // TODO: navegar a Home
+  const handleSkip = async () => {
+    await goToLogin();
   };
 
   return {

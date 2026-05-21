@@ -10,9 +10,12 @@ import {
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import { ArrowRight } from 'lucide-react-native';
+import { StackNavigationProp } from '@react-navigation/stack';
+import { useNavigation } from '@react-navigation/native';
 import { useOnboarding } from '../../hooks/useOnboarding';
 import { ScannerOverlay } from '../../components/scanner/ScannerOverlay';
 import { colors } from '../../utils/colors';
+import { RootStackParamList } from '../../navigation/types';
 
 const { width } = Dimensions.get('window');
 
@@ -25,7 +28,8 @@ interface Slide {
 }
 
 export const OnboardingScreen = () => {
-    const { slides, currentIndex, isLast, handleNext, handleSkip } = useOnboarding();
+    const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
+    const { slides, currentIndex, isLast, handleNext, handleSkip } = useOnboarding(navigation);
     const flatListRef = useRef<FlatList>(null);
 
     const handleNextPress = () => {
@@ -54,18 +58,18 @@ export const OnboardingScreen = () => {
                     <View style={{ flex: 1, backgroundColor: colors.surfaceContainerLow }} />
                 )}
 
-           {item.scanner && (
-  <View style={{
-    position: 'absolute',
-    top: 0, bottom: 0, left: 0, right: 0,
-    alignItems: 'center',
-    justifyContent: 'center',
-    paddingBottom: 80,
-    paddingLeft: 20,
-  }}>
-    <ScannerOverlay />
-  </View>
-)}
+                {item.scanner && (
+                    <View style={{
+                        position: 'absolute',
+                        top: 0, bottom: 0, left: 0, right: 0,
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        paddingBottom: 80,
+                        paddingLeft: 20,
+                    }}>
+                        <ScannerOverlay />
+                    </View>
+                )}
 
                 <LinearGradient
                     colors={['transparent', 'rgba(247,250,243,0.4)', '#f7faf3']}
@@ -104,7 +108,6 @@ export const OnboardingScreen = () => {
 
     return (
         <View style={{ flex: 1, backgroundColor: colors.background }}>
-
             <TouchableOpacity
                 onPress={handleSkip}
                 style={{
@@ -177,7 +180,6 @@ export const OnboardingScreen = () => {
                     ))}
                 </View>
             </View>
-
         </View>
     );
 };
