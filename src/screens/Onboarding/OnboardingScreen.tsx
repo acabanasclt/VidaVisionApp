@@ -14,9 +14,10 @@ import { StackNavigationProp } from '@react-navigation/stack';
 import { useNavigation } from '@react-navigation/native';
 import { useOnboarding } from '../../hooks/useOnboarding';
 import { ScannerOverlay } from '../../components/scanner/ScannerOverlay';
+import { ScreenWrapper } from '../../components/layout/ScreenWrapper';
 import { colors } from '../../utils/colors';
 import { RootStackParamList } from '../../navigation/types';
-
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 const { width } = Dimensions.get('window');
 
 interface Slide {
@@ -31,6 +32,7 @@ export const OnboardingScreen = () => {
     const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
     const { slides, currentIndex, isLast, handleNext, handleSkip } = useOnboarding(navigation);
     const flatListRef = useRef<FlatList>(null);
+    const insets = useSafeAreaInsets();
 
     const handleNextPress = () => {
         if (!isLast) {
@@ -107,12 +109,12 @@ export const OnboardingScreen = () => {
     );
 
     return (
-        <View style={{ flex: 1, backgroundColor: colors.background }}>
+        <ScreenWrapper>
             <TouchableOpacity
                 onPress={handleSkip}
                 style={{
                     position: 'absolute',
-                    top: 16,
+                    top: insets.top + 8,
                     right: 24,
                     zIndex: 10,
                     padding: 8,
@@ -180,6 +182,6 @@ export const OnboardingScreen = () => {
                     ))}
                 </View>
             </View>
-        </View>
+        </ScreenWrapper>
     );
 };

@@ -8,6 +8,7 @@ import {
   Platform,
 } from 'react-native';
 import { Mail, Lock, Eye, EyeOff, Leaf } from 'lucide-react-native';
+import { ScreenWrapper } from '../../components/layout/ScreenWrapper';
 import { Input } from '../../components/common/Input';
 import { Button } from '../../components/common/Button';
 import { Divider } from '../../components/common/Divider';
@@ -33,17 +34,17 @@ export const LoginScreen = () => {
   } = useLogin();
 
   return (
+    <ScreenWrapper>
     <KeyboardAvoidingView
-      style={{ flex: 1, backgroundColor: colors.background }}
+      style={{ flex: 1 }}
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
       <ScrollView
         style={{ flex: 1 }}
         contentContainerStyle={{
-          flexGrow: 1,
           paddingHorizontal: 24,
           paddingTop: 48,
           paddingBottom: 40,
-          justifyContent: 'center',
+          flexGrow: 1,
         }}
         keyboardShouldPersistTaps="handled">
 
@@ -122,5 +123,6 @@ export const LoginScreen = () => {
 
       </ScrollView>
     </KeyboardAvoidingView>
+    </ScreenWrapper>
   );
 };

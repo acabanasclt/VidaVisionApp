@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, ScrollView } from 'react-native';
 import { ShieldCheck, AlertTriangle, Layers, Leaf, Bug } from 'lucide-react-native';
+import { ScreenWrapper } from '../../components/layout/ScreenWrapper';
 import { Header } from '../../components/layout/Header';
 import { HeroBanner } from '../../components/home/HeroBanner';
 import { StatCard } from '../../components/home/StatCard';
@@ -19,7 +20,8 @@ export const HomeScreen = () => {
   } = useHome();
 
   return (
-    <View style={{ flex: 1, backgroundColor: colors.background }}>
+    <ScreenWrapper>
+
       <Header
         name={user.name}
         hasNotifications
@@ -99,6 +101,6 @@ export const HomeScreen = () => {
         </View>
 
       </ScrollView>
-    </View>
+    </ScreenWrapper>
   );
 };
