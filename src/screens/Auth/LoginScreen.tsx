@@ -1,19 +1,18 @@
 import React from 'react';
-import {
-  View, Text, ScrollView, TouchableOpacity, KeyboardAvoidingView, Platform,
-} from 'react-native';
+import { View, Text, ScrollView, TouchableOpacity, KeyboardAvoidingView, Platform } from 'react-native';
 import { Mail, Lock, Eye, EyeOff, Leaf } from 'lucide-react-native';
 import { Input } from '../../components/common/Input';
 import { Button } from '../../components/common/Button';
 import { Divider } from '../../components/common/Divider';
 import { SocialButton } from '../../components/common/SocialButton';
 import { useLogin } from '../../hooks/useLogin';
-import { colors } from '../../utils/colors';
-import { fontSize, radius, spacing, rs } from '../../utils/responsive';
+import { useTheme } from '../../theme/useTheme';
+import { fontSize, spacing, rs } from '../../utils/responsive';
 import GoogleIcon from '../../assets/icons/google.svg';
 import AppleIcon from '../../assets/icons/apple.svg';
 
 export const LoginScreen = () => {
+  const { colors } = useTheme();
   const { form, errors, loading, showPassword, setField, toggleShowPassword, handleLogin, handleForgotPassword, handleGoogleLogin, handleAppleLogin, handleRegister } = useLogin();
 
   return (

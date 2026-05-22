@@ -26,21 +26,9 @@ export const useHome = () => {
     },
   ];
 
-  const handleNotifications = () => {
-    // TODO: navegar a notificaciones
-  };
-
-  const handleStatPress = (type: string) => {
-    // TODO: navegar según tipo
-  };
-
-  const handleActivityPress = (id: string) => {
-    // TODO: navegar a diagnóstico
-  };
-
-  const handleScanPress = () => {
-    // TODO: navegar a scanner
-  };
+  const handleNotifications = () => {};
+  const handleStatPress = (type: string) => {};
+  const handleActivityPress = (id: string) => {};
 
   return {
     user,
@@ -49,6 +37,5 @@ export const useHome = () => {
     handleNotifications,
     handleStatPress,
     handleActivityPress,
-    handleScanPress,
   };
 };

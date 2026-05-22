@@ -1,58 +1,46 @@
 import React from 'react';
 import { View, ScrollView } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { ShieldCheck, AlertTriangle, Layers, Leaf, Bug } from 'lucide-react-native';
-import { ScreenWrapper } from '../../components/layout/ScreenWrapper';
 import { Header } from '../../components/layout/Header';
 import { HeroBanner } from '../../components/home/HeroBanner';
 import { StatCard } from '../../components/home/StatCard';
 import { ActivityItem } from '../../components/home/ActivityItem';
 import { SectionTitle } from '../../components/common/SectionTitle';
 import { useHome } from '../../hooks/useHome';
-import { colors } from '../../utils/colors';
+import { useTheme } from '../../theme/useTheme';
+import { rs, spacing } from '../../utils/responsive';
 
 export const HomeScreen = () => {
-  const {
-    user,
-    recentActivity,
-    handleNotifications,
-    handleStatPress,
-    handleActivityPress,
-  } = useHome();
+  const { colors } = useTheme();
+  const { user, recentActivity, handleNotifications, handleStatPress, handleActivityPress } = useHome();
 
   return (
-    <ScreenWrapper>
-
-      <Header
-        name={user.name}
-        hasNotifications
-        onNotificationsPress={handleNotifications}
-      />
-
+    <SafeAreaView style={{ flex: 1, backgroundColor: colors.background }} edges={['top']}>
+      <Header name={user.name} hasNotifications onNotificationsPress={handleNotifications} />
       <ScrollView
         style={{ flex: 1 }}
-        contentContainerStyle={{ padding: 20, gap: 20, paddingBottom: 100 }}
+        contentContainerStyle={{ padding: spacing.lg, gap: spacing.lg, paddingBottom: 100 }}
         showsVerticalScrollIndicator={false}>
 
-        {/* Alerta banner */}
         <HeroBanner
           message="Alerta estacional activa — Temporada de roya en maíz. Revisá tus parcelas."
           onPress={() => handleStatPress('alert')}
         />
 
-        {/* Stats */}
         <View>
           <SectionTitle title="Resumen del Día" />
-          <View style={{ gap: 12 }}>
-            <View style={{ flexDirection: 'row', gap: 12 }}>
+          <View style={{ gap: spacing.md }}>
+            <View style={{ flexDirection: 'row', gap: spacing.md }}>
               <StatCard
-                icon={<ShieldCheck size={24} color={colors.primary} />}
+                icon={<ShieldCheck size={rs(24)} color={colors.primary} />}
                 value={12}
                 label="Diagnósticos"
                 sublabel="Últimos 7 días"
                 onPress={() => handleStatPress('diagnosis')}
               />
               <StatCard
-                icon={<AlertTriangle size={24} color={colors.error} />}
+                icon={<AlertTriangle size={rs(24)} color={colors.error} />}
                 value={3}
                 label="Alertas"
                 sublabel="Requieren atención"
@@ -61,7 +49,7 @@ export const HomeScreen = () => {
               />
             </View>
             <StatCard
-              icon={<Layers size={24} color={colors.primary} />}
+              icon={<Layers size={rs(24)} color={colors.primary} />}
               value={2}
               label="Parcelas"
               sublabel="Monitoreadas activamente"
@@ -70,7 +58,6 @@ export const HomeScreen = () => {
           </View>
         </View>
 
-        {/* Actividad reciente */}
         <View>
           <SectionTitle title="Actividad Reciente" />
           <View style={{
@@ -84,11 +71,9 @@ export const HomeScreen = () => {
               <ActivityItem
                 key={item.id}
                 icon={item.type === 'healthy'
-                  ? <Leaf size={20} color={colors.onPrimaryContainer} />
-                  : <Bug size={20} color={colors.error} />}
-                iconBg={item.type === 'healthy'
-                  ? colors.primaryContainer
-                  : colors.errorContainer}
+                  ? <Leaf size={rs(20)} color={colors.onPrimaryContainer} />
+                  : <Bug size={rs(20)} color={colors.error} />}
+                iconBg={item.type === 'healthy' ? colors.primaryContainer : colors.errorContainer}
                 title={item.title}
                 description={item.description}
                 status={item.status}
@@ -101,6 +86,6 @@ export const HomeScreen = () => {
         </View>
 
       </ScrollView>
-    </ScreenWrapper>
+    </SafeAreaView>
   );
 };

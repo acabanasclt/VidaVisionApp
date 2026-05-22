@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, TextInputProps } from 'react-native';
-import { colors } from '../../utils/colors';
+import { useTheme } from '../../theme/useTheme';
 import { fontSize, radius, spacing } from '../../utils/responsive';
 
 interface InputProps extends TextInputProps {
@@ -12,9 +12,8 @@ interface InputProps extends TextInputProps {
   rightLabel?: React.ReactNode;
 }
 
-export const Input = ({
-  label, error, leftIcon, rightIcon, onRightIconPress, rightLabel, ...props
-}: InputProps) => {
+export const Input = ({ label, error, leftIcon, rightIcon, onRightIconPress, rightLabel, ...props }: InputProps) => {
+  const { colors } = useTheme();
   const [focused, setFocused] = useState(false);
 
   return (
