@@ -10,11 +10,20 @@ import { StatCard } from '../../components/home/StatCard';
 import { MenuList } from '../../components/common/MenuList';
 import { OutlineButton } from '../../components/common/OutlineButton';
 import { SectionTitle } from '../../components/common/SectionTitle';
+import { ConfirmDialog } from '../../components/common/ConfirmDialog';
 import { fontSize, rs, spacing } from '../../utils/responsive';
 
 export const ProfileScreen = () => {
   const { colors } = useTheme();
-  const { user, stats, menuItems, handleLogout } = useProfile();
+  const {
+    user,
+    stats,
+    menuItems,
+    showLogoutDialog,
+    handleLogoutPress,
+    handleLogoutConfirm,
+    handleLogoutCancel,
+  } = useProfile();
 
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: colors.background }} edges={['top']}>
@@ -61,7 +70,6 @@ export const ProfileScreen = () => {
 
         <View style={{ padding: spacing.lg, gap: spacing.xl }}>
 
-          {/* Stats */}
           <View>
             <SectionTitle title="Estadísticas Principales" />
             <View style={{ flexDirection: 'row', gap: spacing.md }}>
@@ -80,22 +88,34 @@ export const ProfileScreen = () => {
             </View>
           </View>
 
-          {/* Menú */}
           <View>
             <SectionTitle title="Gestión de Cuenta" />
             <MenuList items={menuItems} />
           </View>
 
-          {/* Cerrar sesión */}
           <OutlineButton
             label="Cerrar Sesión"
             icon={<LogOut size={rs(16)} color={colors.error} />}
             color={colors.error}
-            onPress={handleLogout}
+            onPress={handleLogoutPress}
           />
 
         </View>
       </ScrollView>
+
+      {/* Dialog de confirmación */}
+      <ConfirmDialog
+        visible={showLogoutDialog}
+        title="Cerrar Sesión"
+        message="¿Estás seguro que querés cerrar la sesión? Tendrás que volver a ingresar tus datos."
+        confirmLabel="Cerrar Sesión"
+        cancelLabel="Cancelar"
+        confirmVariant="error"
+        icon={<LogOut size={rs(28)} color={colors.error} />}
+        onConfirm={handleLogoutConfirm}
+        onCancel={handleLogoutCancel}
+      />
+
     </SafeAreaView>
   );
 };

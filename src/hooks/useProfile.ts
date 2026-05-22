@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { RootStackParamList } from '../navigation/types';
@@ -18,6 +19,7 @@ export interface ProfileMenuItem {
 export const useProfile = () => {
   const navigation = useNavigation<NavigationProp>();
   const { theme, setTheme } = useTheme();
+  const [showLogoutDialog, setShowLogoutDialog] = useState(false);
 
   const user = {
     name: 'Rebeca Avalos',
@@ -38,20 +40,26 @@ export const useProfile = () => {
     { id: 'support', label: 'Soporte Técnico', icon: 'headphones', onPress: () => {} },
   ];
 
-  const handleLogout = () => {
-    // TODO: cerrar sesión
+  const handleLogoutPress = () => setShowLogoutDialog(true);
+
+  const handleLogoutConfirm = () => {
+    setShowLogoutDialog(false);
+    navigation.replace('Login');
   };
 
-  const handleChangeTheme = (newTheme: Theme) => {
-    setTheme(newTheme);
-  };
+  const handleLogoutCancel = () => setShowLogoutDialog(false);
+
+  const handleChangeTheme = (newTheme: Theme) => setTheme(newTheme);
 
   return {
     user,
     stats,
     menuItems,
     theme,
-    handleLogout,
+    showLogoutDialog,
+    handleLogoutPress,
+    handleLogoutConfirm,
+    handleLogoutCancel,
     handleChangeTheme,
   };
 };

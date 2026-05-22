@@ -72,13 +72,6 @@ export const SettingsScreen = () => {
           <SettingsGroup key={group.id} group={group} />
         ))}
 
-        <OutlineButton
-          label="Cerrar Sesión"
-          icon={<LogOut size={rs(16)} color={colors.error} />}
-          color={colors.error}
-          onPress={handleLogout}
-        />
-
         <Text style={{
           textAlign: 'center',
           fontSize: fontSize.xs,
