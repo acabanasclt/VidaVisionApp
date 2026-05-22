@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Text } from 'react-native';
 import { colors } from '../../utils/colors';
+import { fontSize, spacing, radius } from '../../utils/responsive';
 
 type BadgeVariant = 'success' | 'error' | 'warning' | 'info';
 
@@ -19,19 +20,8 @@ const variantStyles = {
 export const Badge = ({ label, variant = 'success' }: BadgeProps) => {
   const s = variantStyles[variant];
   return (
-    <View style={{
-      backgroundColor: s.bg,
-      borderRadius: 999,
-      paddingHorizontal: 10,
-      paddingVertical: 4,
-    }}>
-      <Text style={{
-        fontSize: 11,
-        fontWeight: '600',
-        color: s.text,
-        letterSpacing: 1,
-        textTransform: 'uppercase',
-      }}>
+    <View style={{ backgroundColor: s.bg, borderRadius: radius.full, paddingHorizontal: spacing.sm + spacing.xs, paddingVertical: spacing.xs }}>
+      <Text style={{ fontSize: fontSize.xs, fontWeight: '600', color: s.text, letterSpacing: 1, textTransform: 'uppercase' }}>
         {label}
       </Text>
     </View>

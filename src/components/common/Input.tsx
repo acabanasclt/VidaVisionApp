@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, TextInputProps } from 'react-native';
 import { colors } from '../../utils/colors';
+import { fontSize, radius, spacing } from '../../utils/responsive';
 
 interface InputProps extends TextInputProps {
   label: string;
@@ -12,20 +13,14 @@ interface InputProps extends TextInputProps {
 }
 
 export const Input = ({
-  label,
-  error,
-  leftIcon,
-  rightIcon,
-  onRightIconPress,
-  rightLabel,
-  ...props
+  label, error, leftIcon, rightIcon, onRightIconPress, rightLabel, ...props
 }: InputProps) => {
   const [focused, setFocused] = useState(false);
 
   return (
-    <View style={{ marginBottom: 16 }}>
-      <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 6 }}>
-        <Text style={{ fontSize: 11, fontWeight: '600', letterSpacing: 1.2, color: colors.onSurfaceVariant, textTransform: 'uppercase' }}>
+    <View style={{ marginBottom: spacing.md }}>
+      <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: spacing.xs }}>
+        <Text style={{ fontSize: fontSize.xs, fontWeight: '600', letterSpacing: 1.2, color: colors.onSurfaceVariant, textTransform: 'uppercase' }}>
           {label}
         </Text>
         {rightLabel}
@@ -34,29 +29,23 @@ export const Input = ({
         flexDirection: 'row',
         alignItems: 'center',
         backgroundColor: colors.surfaceContainerLow,
-        borderRadius: 16,
+        borderRadius: radius.lg,
         borderWidth: 1,
         borderColor: error ? colors.error : focused ? colors.primary : colors.outlineVariant,
-        paddingHorizontal: 14,
-        height: 48,
+        paddingHorizontal: spacing.md,
+        height: spacing.xxl + spacing.md,
       }}>
-        {leftIcon && <View style={{ marginRight: 10 }}>{leftIcon}</View>}
+        {leftIcon && <View style={{ marginRight: spacing.sm }}>{leftIcon}</View>}
         <TextInput
-          style={{ flex: 1, fontSize: 15, color: colors.onSurface, fontWeight: '300' }}
+          style={{ flex: 1, fontSize: fontSize.md, color: colors.onSurface, fontWeight: '300' }}
           placeholderTextColor={colors.outline}
           onFocus={() => setFocused(true)}
           onBlur={() => setFocused(false)}
           {...props}
         />
-        {rightIcon && (
-          <TouchableOpacity onPress={onRightIconPress}>
-            {rightIcon}
-          </TouchableOpacity>
-        )}
+        {rightIcon && <TouchableOpacity onPress={onRightIconPress}>{rightIcon}</TouchableOpacity>}
       </View>
-      {error && (
-        <Text style={{ fontSize: 11, color: colors.error, marginTop: 3 }}>{error}</Text>
-      )}
+      {error && <Text style={{ fontSize: fontSize.xs, color: colors.error, marginTop: spacing.xs }}>{error}</Text>}
     </View>
   );
 };

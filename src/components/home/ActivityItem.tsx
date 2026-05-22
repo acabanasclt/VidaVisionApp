@@ -1,8 +1,9 @@
 import React from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 import { ChevronRight } from 'lucide-react-native';
-import { colors } from '../../utils/colors';
 import { Badge } from '../common/Badge';
+import { colors } from '../../utils/colors';
+import { fontSize, spacing, rs } from '../../utils/responsive';
 
 type ActivityStatus = 'success' | 'error' | 'warning';
 
@@ -17,16 +18,7 @@ interface ActivityItemProps {
   showDivider?: boolean;
 }
 
-export const ActivityItem = ({
-  icon,
-  iconBg,
-  title,
-  description,
-  status,
-  statusLabel,
-  onPress,
-  showDivider = true,
-}: ActivityItemProps) => (
+export const ActivityItem = ({ icon, iconBg, title, description, status, statusLabel, onPress, showDivider = true }: ActivityItemProps) => (
   <TouchableOpacity
     activeOpacity={0.7}
     onPress={onPress}
@@ -34,16 +26,16 @@ export const ActivityItem = ({
       flexDirection: 'row',
       alignItems: 'center',
       justifyContent: 'space-between',
-      paddingHorizontal: 16,
-      paddingVertical: 14,
+      paddingHorizontal: spacing.md,
+      paddingVertical: spacing.md,
       borderBottomWidth: showDivider ? 1 : 0,
       borderBottomColor: colors.outlineVariant,
     }}>
-    <View style={{ flexDirection: 'row', alignItems: 'center', flex: 1, gap: 12 }}>
+    <View style={{ flexDirection: 'row', alignItems: 'center', flex: 1, gap: spacing.md }}>
       <View style={{
-        width: 44,
-        height: 44,
-        borderRadius: 22,
+        width: rs(44),
+        height: rs(44),
+        borderRadius: rs(22),
         backgroundColor: iconBg,
         alignItems: 'center',
         justifyContent: 'center',
@@ -51,17 +43,17 @@ export const ActivityItem = ({
         {icon}
       </View>
       <View style={{ flex: 1 }}>
-        <Text style={{ fontSize: 16, fontWeight: '600', color: colors.onSurface, marginBottom: 2 }}>
+        <Text style={{ fontSize: fontSize.md, fontWeight: '600', color: colors.onSurface, marginBottom: spacing.xs }}>
           {title}
         </Text>
-        <Text style={{ fontSize: 14, fontWeight: '300', color: colors.onSurfaceVariant }}>
+        <Text style={{ fontSize: fontSize.sm, fontWeight: '300', color: colors.onSurfaceVariant }}>
           {description}
         </Text>
       </View>
     </View>
-    <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}>
+    <View style={{ flexDirection: 'row', alignItems: 'center', gap: spacing.sm }}>
       <Badge label={statusLabel} variant={status} />
-      <ChevronRight size={16} color={colors.outlineVariant} />
+      <ChevronRight size={rs(16)} color={colors.outlineVariant} />
     </View>
   </TouchableOpacity>
 );

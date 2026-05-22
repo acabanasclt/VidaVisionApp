@@ -1,65 +1,40 @@
 import React from 'react';
 import {
-  View,
-  Text,
-  ScrollView,
-  TouchableOpacity,
-  KeyboardAvoidingView,
-  Platform,
+  View, Text, ScrollView, TouchableOpacity, KeyboardAvoidingView, Platform,
 } from 'react-native';
 import { Mail, Lock, Eye, EyeOff, Leaf } from 'lucide-react-native';
-import { ScreenWrapper } from '../../components/layout/ScreenWrapper';
 import { Input } from '../../components/common/Input';
 import { Button } from '../../components/common/Button';
 import { Divider } from '../../components/common/Divider';
 import { SocialButton } from '../../components/common/SocialButton';
 import { useLogin } from '../../hooks/useLogin';
 import { colors } from '../../utils/colors';
+import { fontSize, radius, spacing, rs } from '../../utils/responsive';
 import GoogleIcon from '../../assets/icons/google.svg';
 import AppleIcon from '../../assets/icons/apple.svg';
 
 export const LoginScreen = () => {
-  const {
-    form,
-    errors,
-    loading,
-    showPassword,
-    setField,
-    toggleShowPassword,
-    handleLogin,
-    handleForgotPassword,
-    handleGoogleLogin,
-    handleAppleLogin,
-    handleRegister,
-  } = useLogin();
+  const { form, errors, loading, showPassword, setField, toggleShowPassword, handleLogin, handleForgotPassword, handleGoogleLogin, handleAppleLogin, handleRegister } = useLogin();
 
   return (
-    <ScreenWrapper>
-    <KeyboardAvoidingView
-      style={{ flex: 1 }}
-      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
+    <KeyboardAvoidingView style={{ flex: 1, backgroundColor: colors.background }} behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
       <ScrollView
         style={{ flex: 1 }}
-        contentContainerStyle={{
-          paddingHorizontal: 24,
-          paddingTop: 48,
-          paddingBottom: 40,
-          flexGrow: 1,
-        }}
+        contentContainerStyle={{ paddingHorizontal: spacing.lg, paddingTop: spacing.xxl + spacing.md, paddingBottom: spacing.xxl, flexGrow: 1 }}
         keyboardShouldPersistTaps="handled">
 
-        <View style={{ alignItems: 'center', marginBottom: 28 }}>
-          <Leaf size={36} color={colors.primary} />
-          <Text style={{ fontSize: 20, fontWeight: '700', color: colors.primary, letterSpacing: -0.3, marginTop: 6 }}>
+        <View style={{ alignItems: 'center', marginBottom: spacing.xxl }}>
+          <Leaf size={rs(36)} color={colors.primary} />
+          <Text style={{ fontSize: fontSize.xl, fontWeight: '700', color: colors.primary, letterSpacing: -0.3, marginTop: spacing.sm }}>
             VidaVision
           </Text>
         </View>
 
-        <View style={{ marginBottom: 28 }}>
-          <Text style={{ fontSize: 36, fontWeight: '700', color: colors.primary, letterSpacing: -0.8, lineHeight: 40, marginBottom: 6 }}>
+        <View style={{ marginBottom: spacing.xxl }}>
+          <Text style={{ fontSize: fontSize.xxxl, fontWeight: '700', color: colors.primary, letterSpacing: -1, lineHeight: rs(40), marginBottom: spacing.sm }}>
             Iniciar Sesión
           </Text>
-          <Text style={{ fontSize: 15, fontWeight: '300', color: colors.onSurfaceVariant, lineHeight: 22 }}>
+          <Text style={{ fontSize: fontSize.md, fontWeight: '300', color: colors.onSurfaceVariant, lineHeight: spacing.xl + spacing.xs }}>
             Inteligencia agrícola de precisión
           </Text>
         </View>
@@ -72,7 +47,7 @@ export const LoginScreen = () => {
           value={form.email}
           onChangeText={v => setField('email', v)}
           error={errors.email}
-          leftIcon={<Mail size={16} color={colors.outline} />}
+          leftIcon={<Mail size={rs(16)} color={colors.outline} />}
         />
 
         <Input
@@ -82,40 +57,33 @@ export const LoginScreen = () => {
           value={form.password}
           onChangeText={v => setField('password', v)}
           error={errors.password}
-          leftIcon={<Lock size={16} color={colors.outline} />}
-          rightIcon={showPassword
-            ? <EyeOff size={16} color={colors.outline} />
-            : <Eye size={16} color={colors.outline} />}
+          leftIcon={<Lock size={rs(16)} color={colors.outline} />}
+          rightIcon={showPassword ? <EyeOff size={rs(16)} color={colors.outline} /> : <Eye size={rs(16)} color={colors.outline} />}
           onRightIconPress={toggleShowPassword}
           rightLabel={
             <TouchableOpacity onPress={handleForgotPassword}>
-              <Text style={{ fontSize: 11, fontWeight: '600', color: colors.primary, letterSpacing: 0.8 }}>
+              <Text style={{ fontSize: fontSize.xs, fontWeight: '600', color: colors.primary, letterSpacing: 0.8 }}>
                 Olvidé mi contraseña
               </Text>
             </TouchableOpacity>
           }
         />
 
-        <Button
-          title="Iniciar Sesión"
-          loading={loading}
-          onPress={handleLogin}
-          style={{ marginTop: 8 }}
-        />
+        <Button title="Iniciar Sesión" loading={loading} onPress={handleLogin} style={{ marginTop: spacing.sm }} />
 
         <Divider label="O CONTINUAR CON" />
 
-        <View style={{ flexDirection: 'row', gap: 10 }}>
-          <SocialButton title="Google" icon={<GoogleIcon width={18} height={18} />} onPress={handleGoogleLogin} />
-          <SocialButton title="Apple" icon={<AppleIcon width={18} height={18} />} onPress={handleAppleLogin} />
+        <View style={{ flexDirection: 'row', gap: spacing.sm }}>
+          <SocialButton title="Google" icon={<GoogleIcon width={rs(18)} height={rs(18)} />} onPress={handleGoogleLogin} />
+          <SocialButton title="Apple" icon={<AppleIcon width={rs(18)} height={rs(18)} />} onPress={handleAppleLogin} />
         </View>
 
-        <View style={{ flexDirection: 'row', justifyContent: 'center', marginTop: 32 }}>
-          <Text style={{ fontSize: 14, fontWeight: '300', color: colors.onSurfaceVariant }}>
+        <View style={{ flexDirection: 'row', justifyContent: 'center', marginTop: spacing.xxl }}>
+          <Text style={{ fontSize: fontSize.sm, fontWeight: '300', color: colors.onSurfaceVariant }}>
             ¿No tienes una cuenta?{' '}
           </Text>
           <TouchableOpacity onPress={handleRegister}>
-            <Text style={{ fontSize: 14, fontWeight: '700', color: colors.primary }}>
+            <Text style={{ fontSize: fontSize.sm, fontWeight: '700', color: colors.primary }}>
               Regístrate
             </Text>
           </TouchableOpacity>
@@ -123,6 +91,5 @@ export const LoginScreen = () => {
 
       </ScrollView>
     </KeyboardAvoidingView>
-    </ScreenWrapper>
   );
 };
