@@ -4,13 +4,13 @@ import { View } from 'react-native';
 import { Home, Camera, Map, BookOpen, User } from 'lucide-react-native';
 import { MainTabParamList } from './types';
 import { useTheme } from '../theme/useTheme';
-import { ProfileScreen } from '../screens/Profile/ProfileScreen';
 import { rs } from '../utils/responsive';
+import { ProfileScreen } from '../screens/Profile/ProfileScreen';
 import { HomeScreen } from '../screens/home/HomeScreen';
+import { HistoryScreen } from '../screens/History/HistoryScreen';
 
 const ScannerScreen = () => <View />;
 const MapScreen = () => <View />;
-const HistoryScreen = () => <View />;
 
 const Tab = createBottomTabNavigator<MainTabParamList>();
 
