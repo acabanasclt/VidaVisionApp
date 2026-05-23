@@ -44,7 +44,22 @@ export const useHistory = () => {
   }, [search]);
 
   const handleItemPress = (id: string) => {
-    // TODO: navegar a diagnóstico
+    navigation.navigate('Diagnosis', {
+      imageUri: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCd9qHYfPnd9mMBmLk7vLlsYhkNa8gpF6xxZQau1vwkJsLSUdmPZsjyzQHnjjpux3CIT5MmL-_BJxRQC0gcqH3wvPw8A6CbEZ5zDwdBjPyipF-LaTipzI7UZZO0dmCsSllWcUWR8-QMPKaHsxxOxiaibBYI_RAMjDVSllluPiU1J-DhiB8wbDAFcCbygKScVALxSiXcp3O3L6rz1eq7kqr8GFYc-Pxr3FenfjvpXyaBtchvfz-DZY2PnPsPZ7jmAiA-OpecCXnmlw',
+      confidence: 98.5,
+      severity: 'Alto Severidad',
+      severityVariant: 'error',
+      phase: 'Fase: R3 (Temprana)',
+      name: 'Roya de la Soja',
+      scientificName: 'Phakopsora pachyrhizi',
+      actionPlan: [
+        { number: 1, title: 'Aplicación Inmediata', description: 'Se recomienda el uso de fungicidas sistémicos (triazoles + estrobirulinas) para frenar la dispersión en el lote actual.' },
+        { number: 2, title: 'Monitoreo Intensivo', description: 'Inspeccionar el estrato inferior de las parcelas linderas cada 48 horas para detectar nuevas pústulas.' },
+        { number: 3, title: 'Registro de Clima', description: 'Evaluar condiciones de alta humedad y temperaturas entre 18-25°C, ideales para la progresión del hongo.' },
+      ],
+      specialistNote: 'La detección en etapa R3 permite una intervención con alta probabilidad de éxito en el mantenimiento del rendimiento del cultivo.',
+      canSave: false,
+    });
   };
 
   return {

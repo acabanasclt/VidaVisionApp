@@ -4,6 +4,19 @@ export type RootStackParamList = {
   Main: undefined;
   Appearance: undefined;
   Settings: undefined;
+  Diagnosis: {
+    id?: string;
+    imageUri?: string;
+    confidence: number;
+    severity: string;
+    severityVariant: 'error' | 'warning' | 'info';
+    phase: string;
+    name: string;
+    scientificName: string;
+    actionPlan: { number: number; title: string; description: string }[];
+    specialistNote: string;
+    canSave?: boolean;
+  };
 };
 
 export type MainTabParamList = {

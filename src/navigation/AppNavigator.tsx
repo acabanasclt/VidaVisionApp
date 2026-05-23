@@ -7,6 +7,7 @@ import { LoginScreen } from '../screens/Auth/LoginScreen';
 import { TabNavigator } from './TabNavigator';
 import { AppearanceScreen } from '../screens/Profile/AppearanceScreen';
 import { SettingsScreen } from '../screens/Settings/SettingsScreen';
+import { DiagnosisScreen } from '../screens/Diagnosis/DiagnosisScreen';
 
 const Stack = createStackNavigator<RootStackParamList>();
 
@@ -32,6 +33,7 @@ export const AppNavigator = () => {
       <Stack.Screen name="Main" component={TabNavigator} />
       <Stack.Screen name="Appearance" component={AppearanceScreen} />
       <Stack.Screen name="Settings" component={SettingsScreen} />
+      <Stack.Screen name="Diagnosis" component={DiagnosisScreen} />
     </Stack.Navigator>
   );
 };

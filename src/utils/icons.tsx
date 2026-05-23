@@ -3,14 +3,14 @@ import {
   User, Bell, Shield, Languages, Ruler, Moon,
   Info, FileText, Lock, HelpCircle, AlertCircle,
   Map, Settings, Headphones, Layers, ScanLine,
-  Camera, Home, BookOpen, Palette,
+  Camera, Home, BookOpen, Palette, Bookmark, FileDown
 } from 'lucide-react-native';
 
 type IconName =
   | 'user' | 'bell' | 'shield' | 'languages' | 'ruler' | 'moon'
   | 'info' | 'file-text' | 'lock' | 'help-circle' | 'alert-circle'
   | 'map' | 'settings' | 'headphones' | 'layers' | 'scan-line'
-  | 'camera' | 'home' | 'book-open' | 'palette';
+  | 'camera' | 'home' | 'book-open' | 'palette' | 'bookmark' | 'file-down';
 
 export type { IconName };
 
@@ -36,6 +36,8 @@ export const getIcon = (name: IconName, size: number, color: string): React.Reac
     home: <Home size={size} color={color} />,
     'book-open': <BookOpen size={size} color={color} />,
     palette: <Palette size={size} color={color} />,
+    bookmark: <Bookmark size={size} color={color} />,
+    'file-down': <FileDown size={size} color={color} />,
   };
   return icons[name] ?? null;
 };

@@ -1,5 +1,5 @@
 import React from 'react';
-import { TouchableOpacity, Text, ActivityIndicator, ViewStyle, TouchableOpacityProps } from 'react-native';
+import { TouchableOpacity, Text, ActivityIndicator, View, ViewStyle, TouchableOpacityProps } from 'react-native';
 import { useTheme } from '../../theme/useTheme';
 import { fontSize, radius, spacing } from '../../utils/responsive';
 
@@ -8,9 +8,10 @@ interface ButtonProps extends TouchableOpacityProps {
   variant?: 'primary' | 'secondary' | 'outline';
   loading?: boolean;
   style?: ViewStyle;
+  icon?: React.ReactNode;
 }
 
-export const Button = ({ title, variant = 'primary', loading = false, disabled, style, ...props }: ButtonProps) => {
+export const Button = ({ title, variant = 'primary', loading = false, disabled, style, icon, ...props }: ButtonProps) => {
   const { colors } = useTheme();
 
   const styles = {
@@ -34,10 +35,16 @@ export const Button = ({ title, variant = 'primary', loading = false, disabled, 
         justifyContent: 'center',
       }, style]}
       {...props}>
-      {loading
-        ? <ActivityIndicator color={s.text} />
-        : <Text style={{ fontSize: fontSize.md, fontWeight: '400', color: s.text }}>{title}</Text>
-      }
+      {loading ? (
+        <ActivityIndicator color={s.text} />
+      ) : (
+        <View style={{ flexDirection: 'row', alignItems: 'center', gap: spacing.sm }}>
+          {icon}
+          <Text style={{ fontSize: fontSize.md, fontWeight: '400', color: s.text }}>
+            {title}
+          </Text>
+        </View>
+      )}
     </TouchableOpacity>
   );
 };
