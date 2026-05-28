@@ -10,6 +10,7 @@ import { useTheme } from '../../theme/useTheme';
 import { fontSize, spacing, rs } from '../../utils/responsive';
 import GoogleIcon from '../../assets/icons/google.svg';
 import AppleIcon from '../../assets/icons/apple.svg';
+import { Image } from 'react-native';
 
 export const LoginScreen = () => {
   const { colors } = useTheme();
@@ -23,10 +24,11 @@ export const LoginScreen = () => {
         keyboardShouldPersistTaps="handled">
 
         <View style={{ alignItems: 'center', marginBottom: spacing.xxl }}>
-          <Leaf size={rs(36)} color={colors.primary} />
-          <Text style={{ fontSize: fontSize.xl, fontWeight: '700', color: colors.primary, letterSpacing: -0.3, marginTop: spacing.sm }}>
-            VidaVision
-          </Text>
+          <Image
+            source={require('../../assets/images/LogoVidaVision_circular.png')}
+            style={{ width: rs(80), height: rs(80) }}
+            resizeMode="contain"
+          />
         </View>
 
         <View style={{ marginBottom: spacing.xxl }}>

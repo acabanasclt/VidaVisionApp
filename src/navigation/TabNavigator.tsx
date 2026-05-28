@@ -6,10 +6,10 @@ import { MainTabParamList } from './types';
 import { useTheme } from '../theme/useTheme';
 import { rs } from '../utils/responsive';
 import { ProfileScreen } from '../screens/Profile/ProfileScreen';
-import { HomeScreen } from '../screens/home/HomeScreen';
 import { HistoryScreen } from '../screens/History/HistoryScreen';
+import { ScannerScreen } from '../screens/Scanner/ScannerScreen';
+import { HomeScreen } from '../screens/home/HomeScreen';
 
-const ScannerScreen = () => <View />;
 const MapScreen = () => <View />;
 
 const Tab = createBottomTabNavigator<MainTabParamList>();
@@ -83,7 +83,8 @@ export const TabNavigator = () => {
       })}>
       <Tab.Screen name="Home" component={HomeScreen} />
       <Tab.Screen name="History" component={HistoryScreen} />
-      <Tab.Screen name="Scanner" component={ScannerScreen} />
+      <Tab.Screen name="Scanner" component={ScannerScreen} options={{tabBarStyle: { display: 'none' },
+      }} />
       <Tab.Screen name="Map" component={MapScreen} />
       <Tab.Screen name="Profile" component={ProfileScreen} />
     </Tab.Navigator>
